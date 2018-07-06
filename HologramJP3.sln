@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HologramJP3", "Assembly-CSharp-firstpass.csproj", "{FE21C382-39DC-25D6-2616-AB46D4B7E13C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HologramJP3", "Assembly-CSharp.csproj", "{C4317FBA-7BCB-F679-B5F8-837E4FD8A697}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HologramJP3", "Assembly-CSharp-Editor-firstpass.csproj", "{F16404C5-67AC-3385-8BAD-130709EA7797}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE21C382-39DC-25D6-2616-AB46D4B7E13C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE21C382-39DC-25D6-2616-AB46D4B7E13C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE21C382-39DC-25D6-2616-AB46D4B7E13C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE21C382-39DC-25D6-2616-AB46D4B7E13C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4317FBA-7BCB-F679-B5F8-837E4FD8A697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4317FBA-7BCB-F679-B5F8-837E4FD8A697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4317FBA-7BCB-F679-B5F8-837E4FD8A697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4317FBA-7BCB-F679-B5F8-837E4FD8A697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F16404C5-67AC-3385-8BAD-130709EA7797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16404C5-67AC-3385-8BAD-130709EA7797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16404C5-67AC-3385-8BAD-130709EA7797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16404C5-67AC-3385-8BAD-130709EA7797}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
