@@ -18,6 +18,7 @@ public class KinectManager : MonoBehaviour {
 
     private string WaveRightGestureName = "WaveGesture_Right";
     private string WaveLeftGestureName = "WaveGesture_Left";
+    private string EnemyDetectionGestureName = "EnemyDetection";
 
     //Video Player
     public VideoPlayer[] video;
@@ -31,7 +32,9 @@ public class KinectManager : MonoBehaviour {
         {
             vid.Stop();
         }
+        
         this.kinectSensor = KinectSensor.GetDefault();
+
         if (this.kinectSensor!=null)
         {
             this.bodyCount = this.kinectSensor.BodyFrameSource.BodyCount;
@@ -100,15 +103,23 @@ public class KinectManager : MonoBehaviour {
         {
             if (e.DetectionConfidence > 0.65f)
             {
-                video[0].Play();
-                video[1].Stop();
+                Debug.Log(" Left Gesture Confidence :" + e.DetectionConfidence);
+                video[0].Pause();
             }
         }
         if (e.GestureID == WaveRightGestureName)
         {
             if (e.DetectionConfidence > 0.65f)
             {
-                video[0].Stop();
+                Debug.Log(" Right Gesture Confidence : " + e.DetectionConfidence);
+                video[0].Play();
+            }
+        }
+        if (e.GestureID == EnemyDetectionGestureName)
+        {
+            if (e.DetectionConfidence > 0.01f)
+            {
+                Debug.Log(" Enemy Detection Gesture Confidence : " + e.DetectionConfidence);
                 video[1].Play();
             }
         }

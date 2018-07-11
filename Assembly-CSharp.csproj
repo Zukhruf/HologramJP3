@@ -63,11 +63,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\GestureDetector.cs" />
     <Compile Include="Assets\Script\KinectManager.cs" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/PROJECT/HologramJP3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/PROJECT/HologramJP3/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/PROJECT/HologramJP3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/LAIN LAIN/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

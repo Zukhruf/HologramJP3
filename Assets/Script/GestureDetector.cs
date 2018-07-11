@@ -47,11 +47,13 @@ public class GestureDetector : IDisposable
 {
     /// <summary> Path to the gesture database that was trained with VGB </summary>
     private readonly string leanDB = "GestureDB\\GestureWave.gbd";
+    private readonly string enemyDetectionDB = "GestureDB\\EnemyDetectionGesture.gdb";
 
 
     /// <summary> Name of the discrete gesture in the database that we want to track </summary>
     private readonly string WaveLeftGestureName = "WaveGesture_Left";
     private readonly string WaveRightGestureName = "WaveGesture_Right";
+    private readonly string EnemyDetectionGestureName = "EnemyDetection";
 
     /// <summary> Gesture frame source which should be tied to a body tracking ID </summary>
     private VisualGestureBuilderFrameSource vgbFrameSource = null;
@@ -102,6 +104,7 @@ public class GestureDetector : IDisposable
 
         // load the 'Seated' gesture from the gesture database
         var databasePath = Path.Combine(Application.streamingAssetsPath, this.leanDB);
+        var databasePath2 = Path.Combine(Application.streamingAssetsPath, this.enemyDetectionDB);
         using (VisualGestureBuilderDatabase database = VisualGestureBuilderDatabase.Create(databasePath))
         {
             // we could load all available gestures in the database with a call to vgbFrameSource.AddGestures(database.AvailableGestures), 
@@ -118,6 +121,18 @@ public class GestureDetector : IDisposable
                 }
             }
         }
+
+        //using (VisualGestureBuilderDatabase database2 = VisualGestureBuilderDatabase.Create(databasePath2))
+        //{
+        //    var gesture2 = database2.AvailableGestures;
+        //    foreach (var gestures in gesture2)
+        //    {
+        //        if (gestures.Name.Equals(this.EnemyDetectionGestureName))
+        //        {
+        //            this.vgbFrameSource.AddGesture(gestures);
+        //        }
+        //    }
+        //}
     }
 
     /// <summary>
@@ -201,6 +216,8 @@ public class GestureDetector : IDisposable
     private void Reader_GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
     {
         VisualGestureBuilderFrameReference frameReference = e.FrameReference;
+        VisualGestureBuilderFrameReference frameReference2 = e.FrameReference;
+
         using (VisualGestureBuilderFrame frame = frameReference.AcquireFrame())
         {
             if (frame != null)
@@ -238,6 +255,37 @@ public class GestureDetector : IDisposable
                                 if (this.OnGestureDetected != null)
                                 {
                                     this.OnGestureDetected(this, new GestureEventArgs(true, result.Detected, result.Confidence, this.WaveRightGestureName));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        using (VisualGestureBuilderFrame frame2 = frameReference.AcquireFrame())
+        {
+            if (frame2 != null)
+            {
+                // get the discrete gesture results which arrived with the latest frame
+                var discreteResults = frame2.DiscreteGestureResults;
+
+                if (discreteResults != null)
+                {
+                    // we only have one gesture in this source object, but you can get multiple gestures
+                    foreach (Gesture gesture in this.vgbFrameSource.Gestures)
+                    {
+
+                        if (gesture.Name.Equals(this.EnemyDetectionGestureName) && gesture.GestureType == GestureType.Discrete)
+                        {
+                            DiscreteGestureResult result = null;
+                            discreteResults.TryGetValue(gesture, out result);
+
+                            if (result != null)
+                            {
+                                if (this.OnGestureDetected != null)
+                                {
+                                    this.OnGestureDetected(this, new GestureEventArgs(true, result.Detected, result.Confidence, this.EnemyDetectionGestureName));
                                 }
                             }
                         }
